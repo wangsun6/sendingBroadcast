@@ -18,6 +18,16 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".MyService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.kontiki.action.START_SERVICE"/>
+                <action android:name="com.kontiki.action.STOP_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+
         <receiver
                 android:name=".MyReceiver"
                 android:exported="true">

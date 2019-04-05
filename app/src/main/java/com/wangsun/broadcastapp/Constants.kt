@@ -15,6 +15,11 @@ class Constants {
         /*receiver*/
         val RECEIVER_ACTION_NAME2 = "com.kontiki.action.NAME2"
         val RECEIVER_ACTION_USER_ID2 = "com.kontiki.action.USER_ID2"
+
+        /*service*/
+        val ACTION_START_SERVICE = "com.kontiki.action.START_SERVICE"
+        val ACTION_STOP_SERVICE = "com.kontiki.action.STOP_SERVICE"
+
     }
 
     object IntentKey{

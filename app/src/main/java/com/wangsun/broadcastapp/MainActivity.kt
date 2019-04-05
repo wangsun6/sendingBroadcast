@@ -1,5 +1,6 @@
 package com.wangsun.broadcastapp
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
@@ -29,12 +30,27 @@ class MainActivity : AppCompatActivity() {
      * your broadcast receiver to receive broadcast
      ************************************************/
     private fun registerBroadcast() {
-        val intentFilter = IntentFilter()
+        val intentFilter = IntentFilter(Constants.Actions.RECEIVER_ACTION_NAME2)
+        intentFilter.addAction(Constants.Actions.RECEIVER_ACTION_USER_ID2)
         intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
         registerReceiver(br, intentFilter)
     }
 
     private fun initButton() {
+        /*
+        * Service
+        * */
+        id_start_service.setOnClickListener {
+            startService()
+        }
+
+        id_stop_service.setOnClickListener {
+            stopService()
+        }
+
+
+
+
         id_send_broadcast_test.setOnClickListener {
             /*test broadcast*/
             val intent = Intent(Constants.Actions.BROADCAST_ACTION_NAME)
@@ -49,5 +65,21 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(Constants.IntentKey.UID_KEY,"wangsun")
             sendBroadcast(intent)
         }
+
+    }
+
+
+    private fun startService() {
+        if(!MyService.sIsRunning){
+            val serviceIntent = Intent(this, MyService::class.java)
+            serviceIntent.action = Constants.Actions.ACTION_START_SERVICE
+            startService(serviceIntent)
+        }
+    }
+
+    private fun stopService(){
+        val serviceIntent = Intent(this, MyService::class.java)
+        serviceIntent.action = Constants.Actions.ACTION_STOP_SERVICE
+        startService(serviceIntent)
     }
 }
